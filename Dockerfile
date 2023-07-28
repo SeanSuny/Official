@@ -8,10 +8,8 @@ WORKDIR /app
 
 COPY ./official /app
 
-RUN set -ex \
-&& apk update -f \
-&& apk upgrade \
-&& apk add openjdk8 busybox unzip \
+RUN set -eux \
+&& apk add --update --no-cache openjdk8 busybox unzip \
 && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 && echo "Asia/Shanghai" > /etc/timezone \
 && rm -rf /var/cache/apk/* \
